@@ -15,6 +15,7 @@ public class Book {
     private String smallImageUrl;
 
     public Book(GoodreadsApiResult apiResult){
+        throw new RuntimeException("Not implemented");
     }
 
     public int getGoodReadsId() {
