@@ -18,4 +18,9 @@ public class BookListActivity extends AppCompatActivity implements IBookListView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
     }
+
+    @Override
+    public void showBooks(String title) {
+        throw new RuntimeException("Not implemented");
+    }
 }
