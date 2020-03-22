@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.example.hbr.R;
 
-public class BookDetailActivity extends AppCompatActivity {
+public class BookDetailActivity extends AppCompatActivity implements IBookDetailView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
