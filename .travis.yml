@@ -8,3 +8,7 @@ android:
     - android-28
   licenses:
    - 'android-sdk-license-.+'
+   
+script:
+  # By default Travis-ci executes './gradlew build connectedCheck' if no 'script:' section found.
+  - ./gradlew build
