@@ -10,7 +10,7 @@ android:
    - 'android-sdk-license-.+'
 
 before_script:
-  # Create and start emulator	  # Create and start emulator
-  - echo no | android create avd --force -n test -t "Google Inc.:Google APIs:"$EMULATOR_API_LEVEL -b "${ANDROID_ABI:-armeabi-v7a}" -g "${ANDROID_TAG:-default}"	  - echo no | android create avd --force -n test -t "android-"$EMULATOR_API_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
-  - emulator -avd test -no-skin -no-audio -no-window &	  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator	  - android-wait-for-emulator
+  # Create and start emulator
+  - echo no | android create avd --force -n test -t "android-"$EMULATOR_API_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
