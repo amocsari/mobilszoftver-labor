@@ -8,5 +8,5 @@ import retrofit2.http.Query;
 
 public interface Webservice {
     @GET("search/index.xml")
-    Call<GoodreadsApiResult> findBooksByTitle(@Query("q") String title, @Query("search[field]") String searchField, @Query("key") String apiKey);
+    Call<GoodreadsApiResult> findBookByTitle(@Query("q") String title, @Query("search[field]") String searchField, @Query("key") String apiKey);
 }
