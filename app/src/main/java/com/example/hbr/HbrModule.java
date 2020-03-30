@@ -11,6 +11,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import retrofit2.Retrofit;
 
 @Module
 public class HbrModule {
@@ -41,7 +42,7 @@ public class HbrModule {
     @Provides
     @Singleton
     public Webservice webservice(){
-        throw new RuntimeException("Not implemented");
+        return Webservice.build();
     }
 
     @Provides
