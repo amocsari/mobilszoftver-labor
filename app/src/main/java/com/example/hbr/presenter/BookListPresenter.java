@@ -1,5 +1,6 @@
 package com.example.hbr.presenter;
 
+import com.example.hbr.HbrApplication;
 import com.example.hbr.model.Book;
 import com.example.hbr.respository.database.DatabaseRepository;
 import com.example.hbr.respository.web.Webservice;
@@ -18,6 +19,12 @@ public class BookListPresenter extends PresenterBase<IBookListView> {
 
     @Inject
     DatabaseRepository databaseRepository;
+
+    @Override
+    public void attachScreen(IBookListView view){
+        super.attachScreen(view);
+        HbrApplication.injector.inject(this);
+    }
 
     public List<Book> getBookList() {
         return bookList;

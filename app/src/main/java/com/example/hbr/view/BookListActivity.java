@@ -1,12 +1,14 @@
 package com.example.hbr.view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.hbr.HbrApplication;
 import com.example.hbr.R;
 import com.example.hbr.presenter.BookListPresenter;
 
 import javax.inject.Inject;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class BookListActivity extends AppCompatActivity implements IBookListView {
 
@@ -17,6 +19,19 @@ public class BookListActivity extends AppCompatActivity implements IBookListView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
+        HbrApplication.injector.inject(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        bookListPresenter.attachScreen(this);
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        bookListPresenter.detachScreen();
     }
 
     @Override

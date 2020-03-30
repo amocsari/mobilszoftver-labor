@@ -22,20 +22,20 @@ public class HbrModule {
 
     @Provides
     public Context provideContext(){
-        throw new RuntimeException("Not implemented");
+        return context;
     }
 
     @Provides
     @Singleton
     public BookListPresenter provideBookListPresenter(){
-        throw new RuntimeException("Not implemented");
+        return new BookListPresenter();
 
     }
 
     @Provides
     @Singleton
     public BookDetailPresenter provideBookDetailsPresenter(){
-        throw new RuntimeException("Not implemented");
+        return new BookDetailPresenter();
     }
 
     @Provides
@@ -47,6 +47,6 @@ public class HbrModule {
     @Provides
     @Singleton
     public DatabaseRepository databaseRepository(){
-        throw new RuntimeException("Not implemented");
+        return new DatabaseRepository();
     }
 }
