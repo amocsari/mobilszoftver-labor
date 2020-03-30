@@ -1,13 +1,15 @@
 package com.example.hbr.presenter;
 
+import com.example.hbr.HbrApplication;
+
 public abstract class PresenterBase<T> {
     T view;
 
-    void registerView(T view){
+    public void attachScreen(T view){
         this.view = view;
     }
 
-    void unregisterView(){
+    public void detachScreen(){
         this.view = null;
     }
 }
