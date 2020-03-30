@@ -3,6 +3,7 @@ package com.example.hbr.respository.database;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.example.hbr.HbrApplication;
 import com.example.hbr.model.Book;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class DatabaseRepository {
     private BookDatabase bookDatabase;
 
     public DatabaseRepository(){
+        HbrApplication.injector.inject(this);
         bookDatabase = Room.databaseBuilder(context, BookDatabase.class, "db_book").build();
     }
 

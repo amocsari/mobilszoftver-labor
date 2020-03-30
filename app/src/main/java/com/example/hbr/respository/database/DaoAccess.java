@@ -1,7 +1,5 @@
 package com.example.hbr.respository.database;
 
-import android.arch.lifecycle.LiveData;
-
 import com.example.hbr.model.Book;
 
 import java.util.List;
