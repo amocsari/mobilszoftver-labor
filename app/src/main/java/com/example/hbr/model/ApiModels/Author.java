@@ -8,6 +8,10 @@ public class Author {
     @Expose
     private int id;
 
+    @SerializedName("name")
+    @Expose
+    private String name;
+
     public int getId() {
         return id;
     }
@@ -23,8 +27,4 @@ public class Author {
     public void setName(String name) {
         this.name = name;
     }
-
-    @SerializedName("name")
-    @Expose
-    private String name;
 }

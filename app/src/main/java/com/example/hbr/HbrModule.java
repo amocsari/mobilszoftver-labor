@@ -42,7 +42,7 @@ public class HbrModule {
     @Provides
     @Singleton
     public Webservice webservice(){
-        return Webservice.build();
+        return new Webservice();
     }
 
     @Provides
