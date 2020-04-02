@@ -1,6 +1,6 @@
 package com.example.hbr.model;
 
-import com.example.hbr.model.ApiModels.GoodreadsApiResult;
+import com.example.hbr.respository.web.client.model.GoodReadsResponse;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -67,7 +67,7 @@ public class Book {
         this.smallImageUrl = smallImageUrl;
     }
 
-    public Book(GoodreadsApiResult apiResult){
+    public Book(GoodReadsResponse apiResult){
         throw new RuntimeException("Not implemented");
     }
 
