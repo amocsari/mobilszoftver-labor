@@ -1,12 +1,6 @@
 package com.example.hbr.model;
 
-import com.example.hbr.respository.web.client.model.GoodReadsResponse;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import com.example.hbr.respository.web.client.model.Work;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -31,6 +25,40 @@ public class Book {
     private String imageUrl;
 
     private String smallImageUrl;
+
+    public Book(Work work){
+        goodReadsId = work.getId();
+
+        if(work.getBestBook() != null) {
+            title = work.getBestBook().getTitle();
+            imageUrl = work.getBestBook().getImageUrl();
+            smallImageUrl = work.getBestBook().getSmallImageUrl();
+
+            if(work.getBestBook().getAuthor() != null) {
+                author = work.getBestBook().getAuthor().getName();
+            }
+        }
+
+        if(work.getAverageRating() != null) {
+            averageRating = work.getAverageRating().doubleValue();
+        }
+
+        ratingsCount = work.getRatingsCount();
+
+        if(work.getOriginalPublicationYear() != null) {
+            StringBuilder sb = new StringBuilder(work.getOriginalPublicationYear().toString());
+            if (work.getOriginalPublicationMonth() != null) {
+                sb.append("-");
+                sb.append(work.getOriginalPublicationMonth().toString());
+                if (work.getOriginalPublicationDay() != null) ;
+                {
+                    sb.append("-");
+                    sb.append(work.getOriginalPublicationDay());
+                }
+            }
+            publication = sb.toString();
+        }
+    }
 
     public Long getGoodReadsId() {
         return goodReadsId;
