@@ -1,77 +1,30 @@
 package com.example.hbr.model;
 
-import com.example.hbr.model.ApiModels.GoodreadsApiResult;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter;
-import androidx.room.TypeConverters;
 
 @Entity
 public class Book {
     public Book(){}
 
     @PrimaryKey
-    private int goodReadsId;
+    private Long goodReadsId;
 
     private String title;
 
-    private String Author;
+    private String author;
 
     private double averageRating;
 
-    private int ratingsCount;
+    private Long ratingsCount;
 
-    @TypeConverters({TimestampConverter.class})
-    private Date publication;
+    private String publication;
 
     private String imageUrl;
 
     private String smallImageUrl;
 
-    public void setGoodReadsId(int goodReadsId) {
-        this.goodReadsId = goodReadsId;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setAuthor(String author) {
-        Author = author;
-    }
-
-    public void setAverageRating(double averageRating) {
-        this.averageRating = averageRating;
-    }
-
-    public void setRatingsCount(int ratingsCount) {
-        this.ratingsCount = ratingsCount;
-    }
-
-    public void setPublication(Date publication) {
-        this.publication = publication;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public void setSmallImageUrl(String smallImageUrl) {
-        this.smallImageUrl = smallImageUrl;
-    }
-
-    public Book(GoodreadsApiResult apiResult){
-        throw new RuntimeException("Not implemented");
-    }
-
-    public int getGoodReadsId() {
+    public Long getGoodReadsId() {
         return goodReadsId;
     }
 
@@ -80,18 +33,18 @@ public class Book {
     }
 
     public String getAuthor() {
-        return Author;
+        return author;
     }
 
-    public double getAverageRating() {
+    public Double getAverageRating() {
         return averageRating;
     }
 
-    public int getRatingsCount() {
+    public Long getRatingsCount() {
         return ratingsCount;
     }
 
-    public Date getPublication() {
+    public String getPublication() {
         return publication;
     }
 
@@ -103,32 +56,35 @@ public class Book {
         return smallImageUrl;
     }
 
-    public static class TimestampConverter {
+    public void setGoodReadsId(Long goodReadsId) {
+        this.goodReadsId = goodReadsId;
+    }
 
-        private static DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-        @TypeConverter
-        public static Date fromTimestamp(String value) {
-            if (value != null) {
-                try {
-                    TimeZone timeZone = TimeZone.getTimeZone("IST");
-                    df.setTimeZone(timeZone);
-                    return df.parse(value);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            } else {
-                return null;
-            }
-        }
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
+    }
 
-        @TypeConverter
-        public static String dateToTimestamp(Date value) {
-            TimeZone timeZone = TimeZone.getTimeZone("IST");
-            df.setTimeZone(timeZone);
-            return value == null ? null : df.format(value);
-        }
+    public void setRatingsCount(Long ratingsCount) {
+        this.ratingsCount = ratingsCount;
+    }
+
+    public void setPublication(String publication) {
+        this.publication = publication;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setSmallImageUrl(String smallImageUrl) {
+        this.smallImageUrl = smallImageUrl;
     }
 }

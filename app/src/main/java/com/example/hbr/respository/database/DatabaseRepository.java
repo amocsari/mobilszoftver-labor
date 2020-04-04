@@ -6,7 +6,9 @@ import android.os.AsyncTask;
 import com.example.hbr.HbrApplication;
 import com.example.hbr.model.Book;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import javax.inject.Inject;
 
@@ -24,22 +26,47 @@ public class DatabaseRepository {
         bookDatabase = Room.databaseBuilder(context, BookDatabase.class, "db_book").build();
     }
 
-    public void insertBook(final Book book){
+    public void insertBooks(final List<Book> books){
         new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... voids){
-                bookDatabase.daoAccess().insertBook(book);
+                for (Book book: books)
+                    bookDatabase.daoAccess().insertBook(book);
                 return null;
             }
         }.execute();
     }
 
     public List<Book> getAllBooks(){
-        return bookDatabase.daoAccess().getAllBooks();
+        try {
+            return new AsyncTask<Void, Void, List<Book>>() {
+                @Override
+                protected List<Book> doInBackground(Void... voids) {
+                    return bookDatabase.daoAccess().getAllBooks();
+                }
+            }.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
     }
 
-    public Book getBookById(int bookId){
-        return bookDatabase.daoAccess().getBookById(bookId);
+    public Book getBookById(Long bookId){
+        try {
+            return new AsyncTask<Void, Void, Book>() {
+                @Override
+                protected Book doInBackground(Void... voids) {
+                    return bookDatabase.daoAccess().getBookById(bookId);
+                }
+            }.execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void DeleteBook(final Book book){
@@ -52,7 +79,7 @@ public class DatabaseRepository {
         }.execute();
     }
 
-    public void DeleteBookById(final int bookId){
+    public void DeleteBookById(final Long bookId){
         final Book book = getBookById(bookId);
         new AsyncTask<Void, Void, Void>(){
             @Override

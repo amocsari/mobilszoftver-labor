@@ -1,6 +1,7 @@
 package com.example.hbr.presenter;
 
 import com.example.hbr.HbrApplication;
+import com.example.hbr.adapter.BookListAdapter;
 import com.example.hbr.model.Book;
 import com.example.hbr.respository.database.DatabaseRepository;
 import com.example.hbr.respository.web.Webservice;
@@ -11,14 +12,14 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class BookListPresenter extends PresenterBase<IBookListView> {
-
-    List<Book> bookList;
-
     @Inject
     Webservice webservice;
 
     @Inject
     DatabaseRepository databaseRepository;
+
+    private BookListAdapter remoteListAdapter = new BookListAdapter(this);
+    private BookListAdapter localListAdapter = new BookListAdapter(this);
 
     @Override
     public void attachScreen(IBookListView view){
@@ -26,19 +27,35 @@ public class BookListPresenter extends PresenterBase<IBookListView> {
         HbrApplication.injector.inject(this);
     }
 
-    public List<Book> getBookList() {
-        return bookList;
-    }
-
-    private Book findBookByTitle(String title){
+    private void loadBookList() {
         throw new RuntimeException("Not implemented");
     }
 
-    private Book persistBook(Book book){
+    public void findBookByTitle(String title){
         throw new RuntimeException("Not implemented");
     }
 
-    private void showBookDetailsById(int bookId){
+    private void persistBooks(List<Book> books){
+        throw new RuntimeException("Not implemented");
+    }
+
+    public void showBookDetailsById(Long bookId){
+        throw new RuntimeException("Not implemented");
+    }
+
+    public BookListAdapter getRemoteListAdapter() {
+        return remoteListAdapter;
+    }
+
+    public BookListAdapter getLocalListAdapter() {
+        return localListAdapter;
+    }
+
+    public boolean isLocalListEmpty(){
+        throw new RuntimeException("Not implemented");
+    }
+
+    public boolean isRemoteListEmpty(){
         throw new RuntimeException("Not implemented");
     }
 }

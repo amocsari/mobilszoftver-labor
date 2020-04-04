@@ -18,7 +18,7 @@ public interface DaoAccess {
     List<Book> getAllBooks();
 
     @Query("SELECT * FROM Book WHERE goodReadsId = :bookId")
-    Book getBookById(int bookId);
+    Book getBookById(Long bookId);
 
     @Delete
     void deleteBook(Book book);

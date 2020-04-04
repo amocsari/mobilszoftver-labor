@@ -1,7 +1,5 @@
 package com.example.hbr.presenter;
 
-import com.example.hbr.HbrApplication;
-
 public abstract class PresenterBase<T> {
     T view;
 
