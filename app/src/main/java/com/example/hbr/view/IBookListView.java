@@ -1,5 +1,7 @@
 package com.example.hbr.view;
 
 public interface IBookListView {
-    void showBooks(String title);
+    void updateListVisibility();
+    void clearEditText();
+    void goToDetails(Long bookId);
 }

@@ -35,7 +35,17 @@ public class BookListActivity extends AppCompatActivity implements IBookListView
     }
 
     @Override
-    public void showBooks(String title) {
+    public void updateListVisibility() {
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public void clearEditText() {
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public void goToDetails(Long bookId) {
         throw new RuntimeException("Not implemented");
     }
 }

@@ -11,43 +11,42 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import retrofit2.Retrofit;
 
 @Module
-public class HbrModule {
+class HbrModule {
     private Context context;
 
-    public HbrModule(Context context){
+    HbrModule(Context context){
         this.context = context;
     }
 
     @Provides
-    public Context provideContext(){
+    Context provideContext(){
         return context;
     }
 
     @Provides
     @Singleton
-    public BookListPresenter provideBookListPresenter(){
+    BookListPresenter provideBookListPresenter(){
         return new BookListPresenter();
 
     }
 
     @Provides
     @Singleton
-    public BookDetailPresenter provideBookDetailsPresenter(){
+    BookDetailPresenter provideBookDetailsPresenter(){
         return new BookDetailPresenter();
     }
 
     @Provides
     @Singleton
-    public Webservice webservice(){
+    Webservice webservice(){
         return new Webservice();
     }
 
     @Provides
     @Singleton
-    public DatabaseRepository databaseRepository(){
+    DatabaseRepository databaseRepository(){
         return new DatabaseRepository();
     }
 }
