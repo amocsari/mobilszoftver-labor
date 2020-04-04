@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Hbr</string>
+    <string name="search">Search</string>
+    <string name="search_results">Search Results:</string>
+    <string name="book_title">Book title</string>
+    <string name="book_cover">Book Cover</string>
+    <string name="local_books">Local Books:</string>
+    <string name="no_books_found">No books found</string>
+    <string name="average_rating">Average rating:</string>
+    <string name="ratings_count">Ratings count:</string>
+    <string name="publication">Publication</string>
+    <string name="delete">Delete</string>
 </resources>

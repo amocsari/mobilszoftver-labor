@@ -4,7 +4,6 @@ import com.example.hbr.HbrApplication;
 import com.example.hbr.model.Book;
 import com.example.hbr.respository.database.DatabaseRepository;
 import com.example.hbr.view.IBookDetailView;
-import com.example.hbr.view.IBookListView;
 
 import javax.inject.Inject;
 
@@ -19,13 +18,24 @@ public class BookDetailPresenter extends PresenterBase<IBookDetailView> {
     public void attachScreen(IBookDetailView view){
         super.attachScreen(view);
         HbrApplication.injector.inject(this);
+        Long bookId = view.getBookId();
+        findBookById(bookId);
+        view.loadBookData(book);
     }
 
-    public Book getBook() {
-        return book;
+    public void deleteBook(){
+        databaseRepository.DeleteBookById(book.getGoodReadsId());
+        view.goBack();
     }
 
-    private Book findBookById(int bookId){
-        throw new RuntimeException("Not implemented");
+    public void displayRatingValue(){
+        if(book.getAverageRating() != null)
+            view.showSnackBar(book.getAverageRating().toString());
+    }
+
+    private void findBookById(Long bookId){
+        book = databaseRepository.getBookById(bookId);
+        if(book == null)
+            view.goBack();
     }
 }

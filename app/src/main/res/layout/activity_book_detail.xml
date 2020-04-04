@@ -1,9 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.BookDetailActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="8dp">
+
+        <ImageView
+            android:id="@+id/image_view_cover"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_margin="3dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+            <TextView
+                android:id="@+id/tvDetailTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"/>
+            <TextView
+                android:id="@+id/tvDetailAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TableRow
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginStart="10dp"
+                android:text="@string/average_rating"
+                android:layout_gravity="center_vertical"
+                android:textSize="18sp" />
+
+            <RatingBar
+                android:id="@+id/rbAvgRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:saveEnabled="false"
+                android:stepSize="0.01"
+                android:numStars="5"
+                style="@style/Base.Widget.AppCompat.RatingBar.Indicator"/>
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginStart="10dp"
+                android:text="@string/ratings_count"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvRatingCnt"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"/>
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginStart="10dp"
+                android:text="@string/publication"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvPublication"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"/>
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
