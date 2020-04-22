@@ -1,7 +1,5 @@
 package com.example.hbr.tests;
 
-import android.os.Build;
-
 import com.example.hbr.TestApplication;
 import com.example.hbr.presenter.BookListPresenter;
 

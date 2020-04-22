@@ -95,11 +95,7 @@ public class BookListPresenter extends PresenterBase<IBookListView> implements C
 
         List<Book> books = results.getWork().stream().map(Book::new).collect(Collectors.toList());
 
-        try {
-            persistBooks(books);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        persistBooks(books);
     }
 
     @Override
