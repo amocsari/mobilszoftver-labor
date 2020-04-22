@@ -9,7 +9,10 @@ public class HbrApplication extends Application {
     @Override
     public void onCreate(){
         super.onCreate();
+        initComponent();
+    }
 
+    public void initComponent(){
         injector = DaggerHbrApplicationComponent.builder().hbrModule(new HbrModule(this)).build();
     }
 }

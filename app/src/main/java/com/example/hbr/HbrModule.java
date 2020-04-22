@@ -13,7 +13,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-class HbrModule {
+public class HbrModule {
     private Context context;
 
     HbrModule(Context context){
@@ -21,32 +21,31 @@ class HbrModule {
     }
 
     @Provides
-    Context provideContext(){
+    public Context provideContext(){
         return context;
     }
 
     @Provides
     @Singleton
-    BookListPresenter provideBookListPresenter(){
+    public BookListPresenter provideBookListPresenter(){
         return new BookListPresenter();
-
     }
 
     @Provides
     @Singleton
-    BookDetailPresenter provideBookDetailsPresenter(){
+    public BookDetailPresenter provideBookDetailsPresenter(){
         return new BookDetailPresenter();
     }
 
     @Provides
     @Singleton
-    Webservice webservice(){
+    public Webservice webservice(){
         return Webservice.build();
     }
 
     @Provides
     @Singleton
-    DatabaseRepository databaseRepository(){
+    public DatabaseRepository databaseRepository(){
         return new DatabaseRepository();
     }
 }
