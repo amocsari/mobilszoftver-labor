@@ -1,17 +1,25 @@
 package com.example.hbr.presenter;
 
 import com.example.hbr.HbrApplication;
-import com.example.hbr.adapter.BookListAdapter;
+import com.example.hbr.adapter.*;
 import com.example.hbr.model.Book;
+import com.example.hbr.model.apimodels.GoodReadsResponse;
+import com.example.hbr.model.apimodels.Results;
+import com.example.hbr.model.apimodels.Search;
 import com.example.hbr.respository.database.DatabaseRepository;
 import com.example.hbr.respository.web.Webservice;
 import com.example.hbr.view.IBookListView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
-public class BookListPresenter extends PresenterBase<IBookListView> {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class BookListPresenter extends PresenterBase<IBookListView> implements Callback<GoodReadsResponse> {
     @Inject
     Webservice webservice;
 
@@ -22,24 +30,31 @@ public class BookListPresenter extends PresenterBase<IBookListView> {
     private BookListAdapter localListAdapter = new BookListAdapter(this);
 
     @Override
-    public void attachScreen(IBookListView view){
+    public void attachScreen(IBookListView view) {
         super.attachScreen(view);
         HbrApplication.injector.inject(this);
+
+        findBookByTitle("Hobbit");
     }
 
     private void loadBookList() {
         throw new RuntimeException("Not implemented");
     }
 
-    public void findBookByTitle(String title){
-        throw new RuntimeException("Not implemented");
+    public void findBookByTitle(String title) {
+        webservice.findBookByTitle(title, "title", "Kn9jyCFyPgYJUgV4B1bsw").enqueue(this);
     }
 
-    private void persistBooks(List<Book> books){
-        throw new RuntimeException("Not implemented");
+    private void persistBooks(List<Book> books) {
+        List<Long> oldBookIds = databaseRepository.getAllBooks().stream().mapToLong(Book::getGoodReadsId).boxed().collect(Collectors.toList());
+        List<Book> newBooks = books.stream().filter(b -> !oldBookIds.contains(b.getGoodReadsId())).collect(Collectors.toList());
+
+        databaseRepository.insertBooks(newBooks);
+        remoteListAdapter.addBooks(books);
+        localListAdapter.addBooks(newBooks);
     }
 
-    public void showBookDetailsById(Long bookId){
+    public void showBookDetailsById(Long bookId) {
         throw new RuntimeException("Not implemented");
     }
 
@@ -51,11 +66,44 @@ public class BookListPresenter extends PresenterBase<IBookListView> {
         return localListAdapter;
     }
 
-    public boolean isLocalListEmpty(){
+    public boolean isLocalListEmpty() {
         throw new RuntimeException("Not implemented");
     }
 
-    public boolean isRemoteListEmpty(){
+    public boolean isRemoteListEmpty() {
         throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public void onResponse(Call<GoodReadsResponse> call, Response<GoodReadsResponse> response) {
+        if (!response.isSuccessful()) {
+            return;
+        }
+
+        GoodReadsResponse goodReadsResponse = response.body();
+
+        if (goodReadsResponse == null)
+            return;
+
+        Search search = goodReadsResponse.getSearch();
+        if (search == null)
+            return;
+
+        Results results = search.getResults();
+        if (results == null || results.getWork() == null)
+            return;
+
+        List<Book> books = results.getWork().stream().map(Book::new).collect(Collectors.toList());
+
+        try {
+            persistBooks(books);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onFailure(Call<GoodReadsResponse> call, Throwable t) {
+        t.printStackTrace();
     }
 }

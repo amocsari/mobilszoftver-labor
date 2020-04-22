@@ -4,7 +4,8 @@ import android.os.Bundle;
 
 import com.example.hbr.HbrApplication;
 import com.example.hbr.R;
-import com.example.hbr.presenter.BookListPresenter;
+
+import com.example.hbr.presenter.*;
 
 import javax.inject.Inject;
 

@@ -3,8 +3,8 @@ package com.example.hbr.adapter;
 import android.view.ViewGroup;
 
 import com.example.hbr.model.Book;
-import com.example.hbr.model.BookViewHolder;
-import com.example.hbr.presenter.BookListPresenter;
+import com.example.hbr.model.*;
+import com.example.hbr.presenter.*;
 
 import java.util.ArrayList;
 import java.util.List;
