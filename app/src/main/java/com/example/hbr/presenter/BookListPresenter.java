@@ -35,6 +35,8 @@ public class BookListPresenter extends PresenterBase<IBookListView> implements C
     public void attachScreen(IBookListView view) {
         super.attachScreen(view);
         HbrApplication.injector.inject(this);
+
+        loadBookList();
     }
 
     private void loadBookList() {
@@ -44,10 +46,13 @@ public class BookListPresenter extends PresenterBase<IBookListView> implements C
         if(bookList == null)
             bookList = new ArrayList<>();
         localListAdapter.addBooks(bookList);
+
         view.updateListVisibility();
+        view.clearEditText();
     }
 
     public void findBookByTitle(String title) {
+        remoteListAdapter.clear();
         webservice.findBookByTitle(title, "title", "Kn9jyCFyPgYJUgV4B1bsw").enqueue(this);
     }
 
@@ -102,6 +107,9 @@ public class BookListPresenter extends PresenterBase<IBookListView> implements C
         List<Book> books = results.getWork().stream().map(Book::new).collect(Collectors.toList());
 
         persistBooks(books);
+
+        view.updateListVisibility();
+        view.clearEditText();
     }
 
     @Override
