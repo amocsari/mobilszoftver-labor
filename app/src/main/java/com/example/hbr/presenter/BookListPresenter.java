@@ -35,8 +35,6 @@ public class BookListPresenter extends PresenterBase<IBookListView> implements C
     public void attachScreen(IBookListView view) {
         super.attachScreen(view);
         HbrApplication.injector.inject(this);
-
-        findBookByTitle("Hobbit");
     }
 
     private void loadBookList() {

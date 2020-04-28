@@ -13,7 +13,7 @@ import com.example.hbr.model.Book;
 import com.example.hbr.presenter.BookDetailPresenter;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
-import com.squareup.picasso.Picasso;
+import com.squareup.picasso.*;
 
 import javax.inject.Inject;
 
@@ -101,31 +101,5 @@ public class BookDetailActivity extends AppCompatActivity implements IBookDetail
     @Override
     public void showSnackBar(String message) {
         Snackbar.make(rbAvgRating, message, BaseTransientBottomBar.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onStart(){
-        super.onStart();
-        bookDetailPresenter.attachScreen(this);
-    }
-
-    @Override
-    public Long getBookId() {
-        throw new RuntimeException("Not implemented");
-    }
-
-    @Override
-    public void goBack() {
-        onBackPressed();
-    }
-
-    @Override
-    public void loadBookData(Book book) {
-        throw new RuntimeException("Not implemented");
-    }
-
-    @Override
-    public void showSnackBar(String message) {
-        throw new RuntimeException("Not implemented");
     }
 }

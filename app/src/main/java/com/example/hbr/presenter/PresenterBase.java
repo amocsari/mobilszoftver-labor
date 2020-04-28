@@ -1,7 +1,7 @@
 package com.example.hbr.presenter;
 
 public abstract class PresenterBase<T> {
-    private T view;
+    protected T view;
 
     public void attachScreen(T view){
         this.view = view;

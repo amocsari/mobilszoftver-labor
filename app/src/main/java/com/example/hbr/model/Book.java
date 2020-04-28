@@ -1,6 +1,5 @@
 package com.example.hbr.model;
 
-import com.example.hbr.respository.web.client.model.Work;
 import com.example.hbr.model.apimodels.Work;
 
 import androidx.room.Entity;
