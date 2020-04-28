@@ -29,7 +29,6 @@ public class HbrModule {
     @Singleton
     BookListPresenter provideBookListPresenter(){
         return new BookListPresenter();
-
     }
 
     @Provides
@@ -40,8 +39,8 @@ public class HbrModule {
 
     @Provides
     @Singleton
-    Webservice webservice(){
-        return new Webservice();
+    public Webservice webservice(){
+        return Webservice.build();
     }
 
     @Provides

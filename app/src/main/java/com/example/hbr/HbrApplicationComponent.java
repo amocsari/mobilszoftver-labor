@@ -1,9 +1,9 @@
 package com.example.hbr;
 
 import com.example.hbr.presenter.BookDetailPresenter;
-import com.example.hbr.presenter.BookListPresenter;
+import com.example.hbr.presenter.*;
 import com.example.hbr.respository.database.DatabaseRepository;
-import com.example.hbr.view.BookDetailActivity;
+import com.example.hbr.view.*;
 import com.example.hbr.view.BookListActivity;
 
 import javax.inject.Singleton;
