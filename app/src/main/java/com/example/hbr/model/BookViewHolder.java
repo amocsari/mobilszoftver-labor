@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BookViewHolder extends RecyclerView.ViewHolder {
-    ImageView ivCover;
-    TextView tvTitle;
-    TextView tvAuthor;
+    private ImageView ivCover;
+    private TextView tvTitle;
+    private TextView tvAuthor;
 
     public BookViewHolder(@NonNull View itemView) {
         super(itemView);

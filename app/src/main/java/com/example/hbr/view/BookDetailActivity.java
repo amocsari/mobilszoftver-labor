@@ -3,6 +3,7 @@ package com.example.hbr.view;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -44,7 +45,12 @@ public class BookDetailActivity extends AppCompatActivity implements IBookDetail
         tvRatingCnt = findViewById(R.id.tvRatingCnt);
         tvPublication = findViewById(R.id.tvPublication);
 
-        rbAvgRating.setOnClickListener(view -> bookDetailPresenter.displayRatingValue());
+        rbAvgRating.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                bookDetailPresenter.displayRatingValue();
+            }
+            return true;
+        });
     }
 
     @Override

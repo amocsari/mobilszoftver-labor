@@ -11,7 +11,7 @@ import com.example.hbr.R;
 import com.example.hbr.presenter.BookListPresenter;
 import com.google.android.material.textfield.TextInputEditText;
 
-import com.example.hbr.presenter.*;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -91,7 +91,7 @@ public class BookListActivity extends AppCompatActivity implements IBookListView
 
     @Override
     public void clearEditText() {
-        etTitle.getText().clear();
+        Objects.requireNonNull(etTitle.getText()).clear();
     }
 
     @Override

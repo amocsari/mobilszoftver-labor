@@ -12,7 +12,7 @@ import androidx.room.Query;
 @Dao
 public interface DaoAccess {
     @Insert
-    Long insertBook(Book book);
+    void insertBook(Book book);
 
     @Query("SELECT * FROM Book")
     List<Book> getAllBooks();

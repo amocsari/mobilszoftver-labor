@@ -2,7 +2,6 @@ package com.example.hbr.presenter;
 
 import com.example.hbr.HbrApplication;
 import com.example.hbr.adapter.BookListAdapter;
-import com.example.hbr.adapter.*;
 import com.example.hbr.model.Book;
 import com.example.hbr.model.apimodels.GoodReadsResponse;
 import com.example.hbr.model.apimodels.Results;
@@ -26,10 +25,10 @@ public class BookListPresenter extends PresenterBase<IBookListView> implements C
     Webservice webservice;
 
     @Inject
-    DatabaseRepository databaseRepository;
+    protected DatabaseRepository databaseRepository;
 
-    private BookListAdapter remoteListAdapter = new BookListAdapter(this);
-    private BookListAdapter localListAdapter = new BookListAdapter(this);
+    protected BookListAdapter remoteListAdapter = new BookListAdapter(this);
+    protected BookListAdapter localListAdapter = new BookListAdapter(this);
 
     @Override
     public void attachScreen(IBookListView view) {

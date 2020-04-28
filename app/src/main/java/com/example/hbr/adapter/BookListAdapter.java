@@ -7,11 +7,6 @@ import com.example.hbr.R;
 import com.example.hbr.model.Book;
 import com.example.hbr.model.BookViewHolder;
 import com.example.hbr.presenter.BookListPresenter;
-import android.view.ViewGroup;
-
-import com.example.hbr.model.Book;
-import com.example.hbr.model.*;
-import com.example.hbr.presenter.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +15,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BookListAdapter extends RecyclerView.Adapter<BookViewHolder> {
-    BookListPresenter bookListPresenter;
+    private BookListPresenter bookListPresenter;
 
     public BookListAdapter(BookListPresenter bookListPresenter){
         this.bookListPresenter = bookListPresenter;
     }
 
-    List<Book> bookList = new ArrayList<>();
+    private List<Book> bookList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -41,9 +36,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookViewHolder> {
         holder.setAuthor(book.getAuthor());
         holder.setTitle(book.getTitle());
         holder.setCover(book.getImageUrl());
-        holder.itemView.setOnClickListener(view -> {
-            bookListPresenter.showBookDetailsById(book.getGoodReadsId());
-        });
+        holder.itemView.setOnClickListener(view -> bookListPresenter.showBookDetailsById(book.getGoodReadsId()));
     }
 
     @Override
@@ -62,9 +55,5 @@ public class BookListAdapter extends RecyclerView.Adapter<BookViewHolder> {
         bookList.addAll(books);
         bookList.sort((b1, b2) -> b1.getTitle().compareTo(b2.getTitle()));
         notifyDataSetChanged();
-    }
-
-    public boolean contains(Book book){
-        return bookList.stream().anyMatch(b -> b.getGoodReadsId().equals(book.getGoodReadsId()));
     }
 }

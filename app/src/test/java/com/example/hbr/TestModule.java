@@ -20,13 +20,13 @@ public class TestModule extends HbrModule {
     @Provides
     @Singleton
     public Webservice webservice() {
-        return MockFactory.getMockWebService();
+        return MockFactory.mockWebservice;
     }
 
     @Override
     @Provides
     @Singleton
     public DatabaseRepository databaseRepository() {
-        return MockFactory.getMockDatabaseRespository();
+        return MockFactory.mockDatabaseRepository;
     }
 }

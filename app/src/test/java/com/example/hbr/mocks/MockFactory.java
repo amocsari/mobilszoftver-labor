@@ -1,5 +1,6 @@
 package com.example.hbr.mocks;
 
+import com.example.hbr.adapter.BookListAdapter;
 import com.example.hbr.model.Book;
 import com.example.hbr.model.apimodels.Author;
 import com.example.hbr.model.apimodels.GoodReadsResponse;
@@ -8,7 +9,10 @@ import com.example.hbr.model.apimodels.Search;
 import com.example.hbr.model.apimodels.Work;
 import com.example.hbr.respository.database.DatabaseRepository;
 import com.example.hbr.respository.web.Webservice;
+import com.example.hbr.view.BookDetailActivity;
+import com.example.hbr.view.BookListActivity;
 
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.math.BigDecimal;
@@ -22,23 +26,56 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyListOf;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class MockFactory {
-    public static Webservice getMockWebService() {
-        GoodReadsResponse sampleResponse = generateSampleResponse();
 
-        Webservice mockWebService = Mockito.mock(Webservice.class);
+    @Mock
+    public static DatabaseRepository mockDatabaseRepository;
+    @Mock
+    public static BookListAdapter mockRemoteBookListAdapter;
+    @Mock
+    public static BookListAdapter mockLocalBookListAdapter;
+    @Mock
+    public static Webservice mockWebservice;
+    @Mock
+    public static BookListActivity mockBookListActivity;
+    @Mock
+    public static BookDetailActivity mockBookDetailActivity;
 
-        when(mockWebService.findBookByTitle(any(String.class), any(String.class), any(String.class))).thenReturn(Calls.response(sampleResponse));
+    public static List<Book> mockTable;
 
-        return mockWebService;
+    public static void generate() {
+        generateMockBookDetailActivity();
+        generateMockBookListActivity();
+        generateMockDatabaseRespository();
+        generateMockLocalBookListAdapter();
+        generateMockRemoteBookListAdapter();
+        generateMockWebService();
     }
 
-    public static DatabaseRepository getMockDatabaseRespository() {
-        List<Book> mockTable = generateSampleBooks();
+    private static void generateMockLocalBookListAdapter() {
+        mockLocalBookListAdapter = mock(BookListAdapter.class);
+    }
 
-        DatabaseRepository mockDatabaseRepository = Mockito.mock(DatabaseRepository.class);
+    private static void generateMockRemoteBookListAdapter() {
+        mockRemoteBookListAdapter = mock(BookListAdapter.class);
+    }
+
+    private static void generateMockWebService() {
+        GoodReadsResponse sampleResponse = generateSampleResponse();
+
+        mockWebservice = Mockito.mock(Webservice.class);
+
+        when(mockWebservice.findBookByTitle(any(String.class), any(String.class), any(String.class))).thenReturn(Calls.response(sampleResponse));
+    }
+
+    private static void generateMockDatabaseRespository() {
+        mockTable = new ArrayList<>();
+
+        mockDatabaseRepository = Mockito.mock(DatabaseRepository.class);
 
         doAnswer(invocation -> {
             List<Book> books = invocation.getArgument(0);
@@ -73,29 +110,21 @@ public class MockFactory {
 
             return null;
         }).when(mockDatabaseRepository).DeleteBookById(anyLong());
-
-        return mockDatabaseRepository;
     }
 
-    private static List<Book> generateSampleBooks() {
-        List<Book> bookList = new ArrayList<>();
-        for (Long i = 0L; i < 20; i++) {
-            Book book = new Book();
-            book.setAuthor("Author" + i);
-            book.setAverageRating(i % 5);
-            book.setGoodReadsId(i);
-            book.setPublication("publication" + i);
-            book.setImageUrl("imgageUrl" + i);
-            book.setSmallImageUrl("smallImageUrl" + i);
-            book.setTitle("Title" + i);
+    private static void generateMockBookListActivity() {
+        mockBookListActivity = Mockito.mock(BookListActivity.class);
 
-            bookList.add(book);
-        }
-
-        return bookList;
+        doNothing().when(mockBookListActivity).updateListVisibility();
+        doNothing().when(mockBookListActivity).goToDetails(anyLong());
     }
 
-    private static GoodReadsResponse generateSampleResponse(){
+    private static void generateMockBookDetailActivity() {
+        mockBookDetailActivity = Mockito.mock(BookDetailActivity.class);
+        when(mockBookDetailActivity.getBookId()).thenReturn(1001L);
+    }
+
+    public static GoodReadsResponse generateSampleResponse() {
         GoodReadsResponse goodReadsResponse = new GoodReadsResponse();
         Search search = new Search();
         Results results = new Results();
@@ -105,7 +134,7 @@ public class MockFactory {
         author.setId(3L);
         author.setName("RemoteAuthor3");
 
-        for(Long l = 1001L; l < 1010; l++) {
+        for (Long l = 1001L; l <= 1010; l++) {
             Work work = new Work();
             com.example.hbr.model.apimodels.Book bestBook = new com.example.hbr.model.apimodels.Book();
             bestBook.setAuthor(author);

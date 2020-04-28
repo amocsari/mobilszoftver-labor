@@ -50,7 +50,7 @@ public class Book {
             if (work.getOriginalPublicationMonth() != null) {
                 sb.append("-");
                 sb.append(work.getOriginalPublicationMonth().toString());
-                if (work.getOriginalPublicationDay() != null) ;
+                if (work.getOriginalPublicationDay() != null)
                 {
                     sb.append("-");
                     sb.append(work.getOriginalPublicationDay());

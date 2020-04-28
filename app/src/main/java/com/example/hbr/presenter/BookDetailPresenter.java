@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 public class BookDetailPresenter extends PresenterBase<IBookDetailView> {
 
-    Book book;
+    private Book book;
 
     @Inject
     DatabaseRepository databaseRepository;
@@ -24,13 +24,13 @@ public class BookDetailPresenter extends PresenterBase<IBookDetailView> {
     }
 
     public void deleteBook(){
-        databaseRepository.DeleteBookById(book.getGoodReadsId());
+    databaseRepository.DeleteBookById(book.getGoodReadsId());
         view.goBack();
     }
 
     public void displayRatingValue(){
         if(book.getAverageRating() != null)
-            view.showSnackBar(book.getAverageRating().toString());
+            view.showSnackBar(book.getTitle() + " average rating: " + book.getAverageRating().toString());
     }
 
     private void findBookById(Long bookId){
