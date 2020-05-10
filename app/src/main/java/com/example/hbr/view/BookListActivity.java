@@ -6,11 +6,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.hbr.HbrApplication;
 import com.example.hbr.R;
 import com.example.hbr.presenter.BookListPresenter;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.internal.CrashlyticsNativeComponent;
+import com.google.firebase.crashlytics.internal.common.CrashlyticsCore;
 
 import java.util.Objects;
 
