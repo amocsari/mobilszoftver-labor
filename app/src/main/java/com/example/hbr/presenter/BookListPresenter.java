@@ -9,6 +9,7 @@ import com.example.hbr.model.apimodels.Search;
 import com.example.hbr.respository.database.DatabaseRepository;
 import com.example.hbr.respository.web.Webservice;
 import com.example.hbr.view.IBookListView;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.ArrayList;
 import java.util.List;

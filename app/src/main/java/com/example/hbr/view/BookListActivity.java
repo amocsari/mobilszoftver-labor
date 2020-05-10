@@ -10,6 +10,7 @@ import com.example.hbr.HbrApplication;
 import com.example.hbr.R;
 import com.example.hbr.presenter.BookListPresenter;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Objects;
 
@@ -31,6 +32,8 @@ public class BookListActivity extends AppCompatActivity implements IBookListView
     TextView tvRemoteEmpty;
     TextView tvLocalEmpty;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,16 @@ public class BookListActivity extends AppCompatActivity implements IBookListView
         btnSearch = findViewById(R.id.btnSearch);
         tvRemoteEmpty = findViewById(R.id.tvRemoteEmpty);
         tvLocalEmpty = findViewById(R.id.tvLocalEmpty);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "asds");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "someEvent");
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "some");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
     }
 
     @Override

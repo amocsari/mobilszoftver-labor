@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "743784122997",
+    "firebase_url": "https://hbrapp-912e1.firebaseio.com",
+    "project_id": "hbrapp-912e1",
+    "storage_bucket": "hbrapp-912e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743784122997:android:bdd087c57d095e4bb1c63c",
+        "android_client_info": {
+          "package_name": "com.example.hbr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743784122997-pbld5alvu3hunr5rr5qiaiogkod1v371.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7uNTxH_i0U7L-lqy4RMbZgmm_blaBhjg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743784122997-pbld5alvu3hunr5rr5qiaiogkod1v371.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
