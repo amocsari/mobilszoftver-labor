@@ -9,10 +9,14 @@ import org.junit.Assert;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class RecyclerViewItemCountAssertion implements ViewAssertion {
+public class RecyclerViewItemCountEquals implements ViewAssertion {
   private final int expectedCount;
 
-  public RecyclerViewItemCountAssertion(int expectedCount) {
+  public static RecyclerViewItemCountEquals countEquals(int expectedCount){
+    return new RecyclerViewItemCountEquals(expectedCount);
+  }
+
+  private RecyclerViewItemCountEquals(int expectedCount) {
     this.expectedCount = expectedCount;
   }
 
